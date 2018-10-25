@@ -7,7 +7,8 @@ import java.util.concurrent.*;
 public class ThreadUnsafeMap {
     private static final int THREAD_COUNT = 10;
     private static final int NUMBER_OF_ITERATIONS = 10;
-    private static final int WAIT = 20;
+    private static final boolean WAIT = true;
+    private static final int WAIT_TIME = 20;
     private static Map<Integer, String> map = new HashMap<>();
     private static Map<Integer, String> concurrentMap = new ConcurrentHashMap<>();
     private static ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
@@ -31,10 +32,12 @@ public class ThreadUnsafeMap {
     }
 
     private static void randomWait() {
-        try {
-            Thread.sleep(ThreadLocalRandom.current().nextInt(WAIT));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (WAIT) {
+            try {
+                Thread.sleep(ThreadLocalRandom.current().nextInt(WAIT_TIME));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
