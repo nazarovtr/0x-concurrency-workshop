@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class ThreadUnsafeMap {
     private static final int THREAD_COUNT = 10;
-    private static final int NUMBER_OF_ITERATIONS = 10;
+    private static final int ITERATION_COUNT = 10;
     private static final boolean WAIT = true;
     private static final int WAIT_TIME = 20;
     private static Map<Integer, String> map = new HashMap<>();
@@ -17,7 +17,7 @@ public class ThreadUnsafeMap {
         for (int threadNumber = 0; threadNumber < THREAD_COUNT; threadNumber++) {
             int finalThreadNumber = threadNumber;
             executor.execute(() -> {
-                for (int i = NUMBER_OF_ITERATIONS * finalThreadNumber; i < NUMBER_OF_ITERATIONS * (finalThreadNumber + 1); i++) {
+                for (int i = ITERATION_COUNT * finalThreadNumber; i < ITERATION_COUNT * (finalThreadNumber + 1); i++) {
                     map.put(i, "value");
                     concurrentMap.put(i, "value");
                     randomWait();
