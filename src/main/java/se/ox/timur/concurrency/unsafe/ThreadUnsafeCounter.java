@@ -1,4 +1,4 @@
-package se.ox.timur.concurrency;
+package se.ox.timur.concurrency.unsafe;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,13 +1,15 @@
-package se.ox.timur.concurrency.volatility;
+package se.ox.timur.concurrency.synchronization;
+
+import se.ox.timur.concurrency.Data;
 
 public class CachedPeriodicallyUpdatedData {
-    private volatile Data data;
+    private Data data;
 
-    public Data getData() {
+    public synchronized Data getData() {
         return data;
     }
 
-    public void update() {
+    public synchronized void update() {
         data = loadData();
     }
 
